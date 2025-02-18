@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezultatet e Analizës së Lajmeve</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+</head>
+<body>
+    <!-- Background applied via CSS -->
+    <div class="content">
+        <!-- Display the detected country prominently -->
+        <h2>{{ country }}</h2>
+
+        <!-- Display the original text -->
+        <h3>Teksti Origjinal</h3>
+        <p>{{ text }}</p>
+
+        <!-- Display sentiment analysis -->
+        <h3>Ndjenja</h3>
+        <p>{{ sentiment }}</p>
+
+        <!-- Display extracted keywords -->
+        <h3>Fjalët Kryesore</h3>
+        <p>{{ keywords | join(', ') }}</p>
+
+        <!-- Display the summary -->
+        <h3>Përmbledhje</h3>
+        <p>{{ summary }}</p>
+
+        <!-- Display the selected channel -->
+        <h3>Kanali</h3>
+        <p>{{ channel }}</p>
+    </div>
+    
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Faqja Kryesore</a>
+        <a href="{{ url_for('history') }}">Historia</a>
+        <a href="{{ url_for('statistics') }}">Statistikat</a>
+    </div>
+</body>
+</html>

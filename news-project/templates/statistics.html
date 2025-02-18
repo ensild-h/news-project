@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/statistics.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</head>
+<body>
+    <header>
+        <h1>News Analysis Statistics</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('history') }}">History</a>
+        </nav>
+    </header>
+    <main>
+        <!-- Statistics Overview -->
+        <section class="statistics-overview">
+            <h2>Statistics Overview</h2>
+            {% if stats %}
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Channel</th>
+                        <th>Sentiment</th>
+                        <th>Total Analyses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stat in stats %}
+                    <tr>
+                        <td>{{ stat['channel'] }}</td>
+                        <td>{{ stat['sentiment'] }}</td>
+                        <td>{{ stat['total'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No statistics available.</p>
+            {% endif %}
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts">
+            <div class="chart-container">
+                <h3>Sentiment Distribution</h3>
+                <canvas id="sentimentChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Top Keywords</h3>
+                <canvas id="keywordChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Analysis Trends Over Time</h3>>
+                <canvas id="trendChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Category Insights</h3>
+                <canvas id="categoryChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Sentiment Trends by Channel</h3>
+                <canvas id="channelChart"></canvas>
+            </div>            
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 News Analysis Tool</p>
+    </footer>
+
+    <!-- Hidden JSON Data for Charts -->
+    <script id="sentiment-data" type="application/json">{{ sentiment_data|tojson }}</script>
+    <script id="keyword-data" type="application/json">{{ keyword_data|tojson }}</script>
+    <script id="trend-data" type="application/json">{{ trend_data|tojson }}</script>
+    <script id="category-data" type="application/json">{{ category_data|tojson }}</script>    
+    <script id="channel-data" type="application/json">{{ channel_data|tojson }}</script>
+    
+    <!-- External JS -->
+    <script id="stats-data" type="application/json">{{ stats|tojson }}</script>
+</body>
+</html>

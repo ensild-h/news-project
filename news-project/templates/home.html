@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+    <div class="background">
+        <!-- Analyze Form -->
+        <div class="form-container">
+            <form method="POST">
+                <textarea name="text_input" placeholder="Enter news text here"></textarea>
+                <input type="text" name="url_input" placeholder="Or paste a news website link">
+                <select name="category">
+                    <option value="TOP CHANNEL">TOP CHANNEL</option>
+                    <option value="RTSH">RTSH</option>
+                    <option value="TV KLAN">TV KLAN</option>
+                    <option value="News24">News24</option>
+                    <option value="EuroNews">EuroNews</option>
+                </select>
+                <label for="year">Year:</label>
+                <select id="year" name="year">
+                    <option value="" selected disabled>Select Year</option>
+                    <!-- Create options for years 2005 to 2025 -->
+                    {% for year in range(2005, 2026) %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>                
+                <select name="month">
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+<!-- Navigation Links -->
+<div class="navigation-container">
+    <h2>Navigation</h2>
+    <ul>
+        <li><a href="{{ url_for('history') }}">View History</a></li>
+        <li><a href="{{ url_for('statistics') }}">View Statistics</a></li>
+    </ul>
+</div>
+</body>
+</html>
